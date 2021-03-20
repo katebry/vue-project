@@ -1,9 +1,9 @@
 <template>
   <div class="select-pokemon-page">
-    <img
+    <!-- <img
       src="./../assets/logo-pixel.gif"
       alt="pokémon"
-    >
+    > -->
     <h1>Home page</h1>
     <div class="select-pokemon-content" />
   </div>
