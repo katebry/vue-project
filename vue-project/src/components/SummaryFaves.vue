@@ -86,8 +86,7 @@
               return !this.favourites.includes(pokemon.name)
             }, this)
             
-            const number = Math.floor(Math.random() * Math.floor(list.length))
-            this.$emit('addFavourite', list[number].name)
+            console.log(list)
           },
           emptyFavoritePokemonList() {
             this.$emit('eraseFavouritePokemonList')

@@ -66,9 +66,9 @@ export default {
                 this.$emit('deleteFavourite', indexInArray)
                 return
             }
-            if (this.favouriteListLength < 10) {
-                this.$emit('addFavourite', name)
-            }
+            // if (this.favouriteListLength < 10) {
+            //     this.$emit('addFavourite', name)
+            // }
         },
         playPokemonCry(pokemonId) {
             const audio = new Audio(

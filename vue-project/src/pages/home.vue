@@ -4,13 +4,33 @@
       src="./../assets/logo-pixel.gif"
       alt="pokémon"
     >
-    <h1>Home page</h1>
-    <div class="select-pokemon-content" />
+    <div class="select-pokemon-content">
+      <pokemon-list
+        :pokemon-list="statePokemonDataList"
+        :favourites="stateFavouritePokemonList"
+        @deleteFavourite="deleteFavourite"
+      />
+      <summary-faves
+        :pokemon-list="statePokemonDataList"
+        :favourites="stateFavouritePokemonList"
+        @eraseFavouritePokemonList="eraseFavouritePokemonList"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import PokemonList from '@/components/PokemonList'
+import SummaryFaves from '@/components/SummaryFaves'
+import { mapState, mapActions } from 'vuex'
 export default {
+    components: {
+        PokemonList,
+        SummaryFaves,
+    },
+    computed: {
+        ...mapState(['statePokemonDataList', 'stateFavouritePokemonList']),
+    },
     async created() {
         const pokemonData = await this.getPokemonData()
         this.setPokemonData(pokemonData)
@@ -22,8 +42,9 @@ export default {
             )
             const json = await data.json()
             return json.results
-        }
-    }
+        },
+        ...mapActions(['setPokemonData', 'deleteFavourite', 'eraseFavouritePokemonList']),
+    },
 }
 </script>
 

@@ -9,9 +9,30 @@
     >
       Go back
     </router-link>
-    <div class="overview-favorite-pokemon" />
+    <div class="overview-favourite-pokemon">
+      <pokemon-card
+        v-for="(pokemon, index) in stateFavouritePokemonList"
+        :key="index"
+        :pokemon-name="pokemon"
+      />
+    </div>
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+import PokemonCard from '@/components/PokemonCard'
+    export default {
+        components: {
+            PokemonCard
+        },
+        computed: {
+            ...mapState([
+            'stateFavouritePokemonList'
+            ])
+        }
+    }
+</script>
 
 <style scoped>
 .overview-favourite-pokemon {

@@ -50,6 +50,7 @@
         async getDataSpecificPokemon(name) {
           const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)
           const json = await data.json()
+          console.log(json, '<-- ')
           return json
         },
         async getPokemonDescription(pokemonData) {
