@@ -10,11 +10,6 @@
         :favourites="stateFavouritePokemonList"
         @deleteFavourite="deleteFavourite"
       />
-      <summary-faves
-        :pokemon-list="statePokemonDataList"
-        :favourites="stateFavouritePokemonList"
-        @eraseFavouritePokemonList="eraseFavouritePokemonList"
-      />
     </div>
   </div>
 </template>

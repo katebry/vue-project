@@ -6,15 +6,8 @@
       :key="pokemon.url"
       class="pokemon-list-item"
     >
-      {{ index + 1 + '. ' }}
-      <i
-        v-if="favourites.includes(pokemon.name)"
-        class="nes-icon is-small heart"
-      />
-      <i
-        v-else
-        class="nes-icon is-small heart is-empty"
-      />
+     {{ index + 1 + '. ' }}
+  
       {{ pokemon.name }}
       <img
         :key="pokemon.url"
@@ -30,13 +23,6 @@
         :class="{ 'is-disabled': favouriteListLength === 10 }"
         @click="setFavourites(pokemon.name), playPokemonCry(index + 1)"
       >Pick me!</a>
-      <button
-        v-show="favourites.includes(pokemon.name)"
-        class="nes-btn is-error"
-        @click="setFavourites(pokemon.name), playPokemonCry(index + 1)"
-      >
-        Remove
-      </button>
     </p>
   </div>
 </template>
