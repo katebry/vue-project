@@ -21,12 +21,10 @@
 
 <script>
 import PokemonList from '@/components/PokemonList'
-import SummaryFaves from '@/components/SummaryFaves'
 import { mapState, mapActions } from 'vuex'
 export default {
     components: {
         PokemonList,
-        SummaryFaves,
     },
     computed: {
         ...mapState(['statePokemonDataList', 'stateFavouritePokemonList']),
@@ -43,7 +41,7 @@ export default {
             const json = await data.json()
             return json.results
         },
-        ...mapActions(['setPokemonData', 'deleteFavourite', 'eraseFavouritePokemonList']),
+        ...mapActions(['setPokemonData']),
     },
 }
 </script>
