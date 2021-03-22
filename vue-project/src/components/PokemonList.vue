@@ -6,72 +6,52 @@
       :key="pokemon.url"
       class="pokemon-list-item"
     >
-     {{ index + 1 + '. ' }}
-  
+      {{ index + 1 + ". " }}
+
       {{ pokemon.name }}
       <img
         :key="pokemon.url"
-        :src="
-          `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index +
-            1}.png`
-        "
+        :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+          index + 1
+        }.png`"
         alt="Pokemon`"
-      >
+      />
       <a
-        v-show="!favourites.includes(pokemon.name)"
         class="nes-btn"
         :class="{ 'is-disabled': favouriteListLength === 10 }"
-        @click="setFavourites(pokemon.name), playPokemonCry(index + 1)"
-      >Pick me!</a>
+        @click="playPokemonCry(index + 1)"
+        >Pick me!</a
+      >
     </p>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'PokemonList',
-    props: {
-        pokemonList: {
-            type: Array,
-            required: true,
-        },
-        favourites: {
-            type: Array,
-            required: true,
-        },
+  name: "PokemonList",
+  props: {
+    pokemonList: {
+      type: Array,
+      required: true,
     },
-    computed: {
-        favouriteListLength() {
-            return this.favourites.length
-        },
+  },
+  methods: {
+    playPokemonCry(pokemonId) {
+      const audio = new Audio(
+        `https://pokemoncries.com/cries-old/${pokemonId}.mp3`
+      );
+      audio.play();
     },
-    methods: {
-        setFavourites(name) {
-            if (this.favourites.includes(name)) {
-                const indexInArray = this.favourites.indexOf(name)
-                this.$emit('deleteFavourite', indexInArray)
-                return
-            }
-            // if (this.favouriteListLength < 10) {
-            //     this.$emit('addFavourite', name)
-            // }
-        },
-        playPokemonCry(pokemonId) {
-            const audio = new Audio(
-                `https://pokemoncries.com/cries-old/${pokemonId}.mp3`
-            )
-            audio.play()
-        }
-    },
-}
+  },
+};
 </script>
 
 <style scoped>
 .pokemon-list {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 .pokemon-list-item {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 </style>
