@@ -49,31 +49,72 @@ export default {
 
       return range;
     },
+    computed: {
+      isInFirstPage() {
+        return this.currentPage === 1;
+      },
+      isInLastPage() {
+        return this.currentPage === this.totalPages;
+      },
+    },
+    methods: {
+      onClickFirstPage() {
+        this.$emit("pagechanged", 1);
+      },
+      onClickPreviousPage() {
+        this.$emit("pagechanged", this.currentPage - 1);
+      },
+      onClickPage(page) {
+        this.$emit("pagechanged", page);
+      },
+      onClickNextPage() {
+        this.$emit("pagechanged", this.currentPage + 1);
+      },
+      onClickLastPage() {
+        this.$emit("pagechanged", this.totalPages);
+      },
+    },
   },
 };
 </script>
 <template>
   <ul>
     <li>
-      <button type="button">First</button>
+      <button type="button" @click="onClickFirstPage" :disabled="isInFirstPage">
+        First
+      </button>
     </li>
 
     <li>
-      <button type="button">Previous</button>
+      <button
+        type="button"
+        @click="onClickPreviousPage"
+        :disabled="isInFirstPage"
+      >
+        Previous
+      </button>
     </li>
 
     <li v-for="page in pages" :key="page.name">
-      <button type="button" :disabled="page.isDisabled">
+      <button
+        type="button"
+        @click="onClickPage(page.name)"
+        :disabled="page.isDisabled"
+      >
         {{ page.name }}
       </button>
     </li>
 
     <li>
-      <button type="button">Next</button>
+      <button type="button" @click="onClickNextPage" :disabled="isInLastPage">
+        Next
+      </button>
     </li>
 
     <li>
-      <button type="button">Last</button>
+      <button type="button" @click="onClickLastPage" :disabled="isInLastPage">
+        Last
+      </button>
     </li>
   </ul>
 </template>

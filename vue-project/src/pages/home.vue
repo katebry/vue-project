@@ -9,16 +9,18 @@
 
 <script>
 import PokemonList from "@/components/PokemonList";
+import Pagination from "@/components/Pagination";
 import { mapState, mapActions } from "vuex";
 export default {
   components: {
     PokemonList,
+    Pagination,
   },
   // this caches the PokemonDataList in the 'statePokemonDataList' variable in the global store (React's globalContext)
   computed: {
     ...mapState(["statePokemonDataList"]),
   },
-  // created is the lifecycle hook where you usually make API requests 
+  // created is the lifecycle hook where you usually make API requests
   async created() {
     const pokemonData = await this.getPokemonData();
     this.setPokemonData(pokemonData);
