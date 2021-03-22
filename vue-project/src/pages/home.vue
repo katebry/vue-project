@@ -1,51 +1,46 @@
 <template>
   <div class="select-pokemon-page">
-    <img
-      src="./../assets/logo-pixel.gif"
-      alt="pokémon"
-    >
+    <img src="./../assets/logo-pixel.gif" alt="pokémon" />
     <div class="select-pokemon-content">
-      <pokemon-list
-        :pokemon-list="statePokemonDataList"
-      />
+      <pokemon-list :pokemon-list="statePokemonDataList" />
     </div>
   </div>
 </template>
 
 <script>
-import PokemonList from '@/components/PokemonList'
-import { mapState, mapActions } from 'vuex'
+import PokemonList from "@/components/PokemonList";
+import { mapState, mapActions } from "vuex";
 export default {
-    components: {
-        PokemonList,
+  components: {
+    PokemonList,
+  },
+  // this caches the PokemonDataList in the 'statePokemonDataList' variable in the global store (React's globalContext)
+  computed: {
+    ...mapState(["statePokemonDataList"]),
+  },
+  // created is the lifecycle hook where you usually make API requests 
+  async created() {
+    const pokemonData = await this.getPokemonData();
+    this.setPokemonData(pokemonData);
+  },
+  methods: {
+    async getPokemonData() {
+      const data = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+      const json = await data.json();
+      return json.results;
     },
-    computed: {
-        ...mapState(['statePokemonDataList',]),
-    },
-    async created() {
-        const pokemonData = await this.getPokemonData()
-        this.setPokemonData(pokemonData)
-    },
-    methods: {
-        async getPokemonData() {
-            const data = await fetch(
-                'https://pokeapi.co/api/v2/pokemon?limit=151'
-            )
-            const json = await data.json()
-            return json.results
-        },
-        ...mapActions(['setPokemonData']),
-    },
-}
+    ...mapActions(["setPokemonData"]),
+  },
+};
 </script>
 
 <style scoped>
 .select-pokemon-page {
-    text-align: center;
+  text-align: center;
 }
 .select-pokemon-content {
-    text-align: left;
-    display: flex;
-    justify-content: space-evenly;
+  text-align: left;
+  display: flex;
+  justify-content: space-evenly;
 }
 </style>
