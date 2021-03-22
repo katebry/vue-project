@@ -7,8 +7,6 @@
     <div class="select-pokemon-content">
       <pokemon-list
         :pokemon-list="statePokemonDataList"
-        :favourites="stateFavouritePokemonList"
-        @deleteFavourite="deleteFavourite"
       />
     </div>
   </div>

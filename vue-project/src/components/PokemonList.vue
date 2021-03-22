@@ -18,7 +18,6 @@
       />
       <a
         class="nes-btn"
-        :class="{ 'is-disabled': favouriteListLength === 10 }"
         @click="playPokemonCry(index + 1)"
         >Pick me!</a
       >
