@@ -16,11 +16,7 @@
         }.png`"
         alt="Pokemon`"
       />
-      <a
-        class="nes-btn"
-        @click="playPokemonCry(index + 1)"
-        >Pick me!</a
-      >
+      <a class="nes-btn" @click="playPokemonCry(index + 1)">Pick me!</a>
     </p>
   </div>
 </template>

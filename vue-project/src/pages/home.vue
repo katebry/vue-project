@@ -3,6 +3,13 @@
     <img src="./../assets/logo-pixel.gif" alt="pokémon" />
     <div class="select-pokemon-content">
       <pokemon-list :pokemon-list="statePokemonDataList" />
+      <pagination
+        :total-pages="16"
+        :total="151"
+        :per-page="10"
+        :current-page="currentPage"
+        @pagechanged="onPageChange"
+      />
     </div>
   </div>
 </template>
