@@ -73,14 +73,17 @@ export default {
       onClickLastPage() {
         this.$emit("pagechanged", this.totalPages);
       },
+      isPageActive(page) {
+      return this.currentPage === page;
+    }
     },
   },
 };
 </script>
 <template>
-  <ul>
-    <li>
-      <button type="button" @click="onClickFirstPage" :disabled="isInFirstPage">
+  <ul class="pagination">
+    <li class="pagination-item">
+      <button type="button" @click="onClickFirstPage" :disabled="isInFirstPage" >
         First
       </button>
     </li>
@@ -90,31 +93,48 @@ export default {
         type="button"
         @click="onClickPreviousPage"
         :disabled="isInFirstPage"
+        class="pagination-item"
       >
         Previous
       </button>
     </li>
 
-    <li v-for="page in pages" :key="page.name">
+    <li v-for="page in pages" :key="page.name" class="pagination-item">
       <button
         type="button"
         @click="onClickPage(page.name)"
         :disabled="page.isDisabled"
+        :class="{ active: isPageActive(page.name) }"
       >
         {{ page.name }}
       </button>
     </li>
 
     <li>
-      <button type="button" @click="onClickNextPage" :disabled="isInLastPage">
+      <button type="button" @click="onClickNextPage" :disabled="isInLastPage" class="pagination-item">
         Next
       </button>
     </li>
 
     <li>
-      <button type="button" @click="onClickLastPage" :disabled="isInLastPage">
+      <button type="button" @click="onClickLastPage" :disabled="isInLastPage" class="pagination-item">
         Last
       </button>
     </li>
   </ul>
 </template>
+
+<style>
+.pagination {
+  list-style-type: none;
+}
+
+.pagination-item {
+  display: inline-block;
+}
+
+.active {
+  background-color: #4AAE9B;
+  color: #ffffff;
+}
+</style>
