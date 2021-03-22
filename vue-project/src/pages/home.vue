@@ -20,7 +20,7 @@ export default {
         PokemonList,
     },
     computed: {
-        ...mapState(['statePokemonDataList', 'stateFavouritePokemonList']),
+        ...mapState(['statePokemonDataList',]),
     },
     async created() {
         const pokemonData = await this.getPokemonData()

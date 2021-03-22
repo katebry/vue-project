@@ -20,17 +20,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+
 import PokemonCard from '@/components/PokemonCard'
     export default {
         components: {
             PokemonCard
         },
-        computed: {
-            ...mapState([
-            'stateFavouritePokemonList'
-            ])
-        }
     }
 </script>
 
