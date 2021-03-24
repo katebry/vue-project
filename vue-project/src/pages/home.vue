@@ -8,6 +8,7 @@
         :total="151"
         :per-page="10"
         :current-page="currentPage"
+        :pokemon="statePokemonDataList"
         @pagechanged="onPageChange"
       />
     </div>
@@ -33,6 +34,7 @@ export default {
     this.setPokemonData(pokemonData);
   },
   methods: {
+    // you can use an async here cause of Vuex
     async getPokemonData() {
       const data = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
       const json = await data.json();

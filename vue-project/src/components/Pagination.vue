@@ -18,6 +18,9 @@ export default {
       type: Number,
       required: true,
     },
+    pokemon: {
+      Array
+    }
   },
   computed: {
     startPage() {
