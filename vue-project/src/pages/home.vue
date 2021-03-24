@@ -19,10 +19,17 @@
 import PokemonList from "@/components/PokemonList";
 import Pagination from "@/components/Pagination";
 import { mapState, mapActions } from "vuex";
+
 export default {
   components: {
     PokemonList,
     Pagination,
+  },
+   data: {
+    page: 1,
+    perPage: 10,
+    pokemon: [],
+    dataLength: 16
   },
   // this caches the PokemonDataList in the 'statePokemonDataList' variable in the global store (React's globalContext)
   computed: {
@@ -39,6 +46,15 @@ export default {
       const data = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
       const json = await data.json();
       return json.results;
+    },
+    getPage: function(page) {
+      // we simulate an api call that fetch the records from a backend
+      this.pokemon = [];
+      const startIndex = this.perPage * (page - 1) + 1;
+      const endIndex = startIndex + this.perPage - 1;
+      for (let i = startIndex; i <= endIndex; i++) {
+        this.records.push(`Item ${i}`);
+      }
     },
     ...mapActions(["setPokemonData"]),
   },
